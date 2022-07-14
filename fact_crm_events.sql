@@ -4,8 +4,8 @@ select
 	
    	case 
    	when fin.activity_date >= fin.cohort_date_alt then fin.cohort_date_alt
-    when fin.activity_date < fin.cohort_date_alt then fin.cohort_date
-    else null end 
+   	when fin.activity_date < fin.cohort_date_alt then fin.cohort_date
+   	else null end 
     as cohort_date_alt,						--alternative cohort date: date the e-mail type was first send to the user in this campaign's run
 
 	fin.crm_category,

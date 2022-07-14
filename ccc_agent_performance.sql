@@ -122,7 +122,7 @@ from
 		, sum(func.num_cus_appointment) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.team))
 		as rolling_average_qualified_screening_ratio_team,
 
-       	safe_divide(sum(func.num_cus_qscreen) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.agent_name)
+     	safe_divide(sum(func.num_cus_qscreen) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.agent_name)
 		, sum(func.num_cus_appointment) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.agent_name))
 		as rolling_average_qualified_screening_ratio_agent,
 
@@ -134,8 +134,8 @@ from
 		, sum(func.num_cus_qscreen) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.team))
 		as rolling_average_qualified_screening_sales_ratio_team,
 
-        case
-        when sum(func.num_cus_sale) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.agent_name) = 0 then 0
+  		case
+    	when sum(func.num_cus_sale) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.agent_name) = 0 then 0
 		when sum(func.num_cus_qscreen) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.agent_name) = 0 then 0
 		else safe_divide(sum(func.num_cus_sale) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.agent_name)
 		, sum(func.num_cus_qscreen) over(partition by(case when base.date between date_sub(current_date(), interval 50 day) and date_sub(current_date(), interval 22 day) then 1 else null end), ag.agent_name)) end

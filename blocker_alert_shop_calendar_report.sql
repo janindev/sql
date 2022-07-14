@@ -1,4 +1,3 @@
-
 select
 	unif.* except(active_status),
 	safe_multiply(unif.num_studios, unif.open_duration) as total_open_duration,

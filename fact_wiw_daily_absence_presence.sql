@@ -114,7 +114,7 @@ from
 										wto.start_time,
 										wto.end_date,
 										wto.end_time,
-										case when wto.employee = 'Elias Mauridés' then 'Elias Maurides' else wto.employee end as employee,
+										wto.employee,
 										wto.employee_id,
 										wto.paid_hours,
 										wto.type,
@@ -177,7 +177,7 @@ from
 								extract(time from wsc.start) as start_time,
 								date(wsc.end) as end_date,
 								extract(time from wsc.end) as end_time,
-								case when wsc.employee = 'Elias Mauridés' then 'Elias Maurides' else wsc.employee end as employee,
+								wsc.employee,
 								wsc.employee_id,
 								wsc.position,
 								wsc.total_hours as day_productivity_hours,
@@ -284,7 +284,7 @@ from
 										concat(cast(format_date('%Y-%m', date(wso.date)) as string), '-', case when extract(day from wso.date) < 15 then '01' else '15' end) as month_half,
 										
 										(select 
-											(array(select distinct case when wso.employee = 'Elias Mauridés' then 'Elias Maurides' else wso.employee end as employee
+											(array(select distinct wso.employee
 
 										from `sonova-marketing`.when_i_work.schedule wso)
 
@@ -320,7 +320,7 @@ from
 
 						(select distinct 
 							concat(cast(format_date('%Y-%m', date(wso.date)) as string), '-', case when extract(day from wso.date) < 15 then '01' else '15' end) as month_half,
-							case when wso.employee = 'Elias Mauridés' then 'Elias Maurides' else wso.employee end as employee, 
+							wso.employee, 
 							wso.position, 
 
 							case 
@@ -358,6 +358,6 @@ from
 	) fin
 
 left join`sonova-marketing`.data.dim_agent_main ag
-on case when fin.employee = 'Ilias-Vasileios Mavridis' then 'Elias Maurides' else fin.employee end = ag.full_name
+fin.employee = ag.full_name
 
 where ag.country = 'DE'

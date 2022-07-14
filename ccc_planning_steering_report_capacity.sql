@@ -17,184 +17,184 @@ from
 
 		--backlog 6 days ago + overall no backlog last 5 days + backlog could not be handled past days
 		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and
-			lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
-			and
-			lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		when
+		lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and
+		lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
+		and
+		lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
 
-			then 		--add the remaining backlog
-			lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
+		then 		--add the remaining backlog
+		lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
 
-			else 0 end
+		else 0 end
 
 		--backlog 6 days ago + overall no backlog last 5 days + backlog could not be handled past days
 		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		when
+		lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
 
-			then 		--add the full backlog
-			lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc)
+		then 		--add the full backlog
+		lag(ind4.capacity_lead_tickets_gap, 6) over(order by ind4.weeknum, ind4.daynum asc)
 
-			else 0 end
-
-		--backlog 5 days ago + overall no backlog last 4 days + backlog could not be handled past days
-		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and
-			lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
-			and
-			lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
-
-			then 		--add the remaining backlog
-			lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
-
-			else 0 end
+		else 0 end
 
 		--backlog 5 days ago + overall no backlog last 4 days + backlog could not be handled past days
 		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		when
+		lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and
+		lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
+		and
+		lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
 
-			then 		--add the full backlog
-			lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
+		then 		--add the remaining backlog
+		lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
 
-			else 0 end
+		else 0 end
+
+		--backlog 5 days ago + overall no backlog last 4 days + backlog could not be handled past days
+		+ case
+		when
+		lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+
+		then 		--add the full backlog
+		lag(ind4.capacity_lead_tickets_gap, 5) over(order by ind4.weeknum, ind4.daynum asc)
+
+		else 0 end
 
 		--backlog 4 days ago + overall no backlog last 3 days + backlog could not be handled past days
 		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and
-			lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
-			and
-			lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		when
+		lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and
+		lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
+		and
+		lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
 
-			then 		--add the remaining backlog
-			lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
+		then 		--add the remaining backlog
+		lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
 
-			else 0 end
+		else 0 end
 
 		--backlog 4 days ago + overall no backlog last 3 days + backlog could not be handled past days
 		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		when
+		lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
 
-			then 		--add the full backlog
-			lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
+		then 		--add the full backlog
+		lag(ind4.capacity_lead_tickets_gap, 4) over(order by ind4.weeknum, ind4.daynum asc)
 
-			else 0 end
-
-		--backlog 3 days ago + overall no backlog last 2 days + backlog could not be handled past days
-		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and
-			lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
-			and
-			lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
-
-			then 		--add the remaining backlog
-			lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
-
-			else 0 end
+		else 0 end
 
 		--backlog 3 days ago + overall no backlog last 2 days + backlog could not be handled past days
 		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		when
+		lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and
+		lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
+		and
+		lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
 
-			then 		--add the full backlog
-			lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		then 		--add the remaining backlog
+		lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
 
-			else 0 end
+		else 0 end
+
+		--backlog 3 days ago + overall no backlog last 2 days + backlog could not be handled past days
+		+ case
+		when
+		lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+
+		then 		--add the full backlog
+		lag(ind4.capacity_lead_tickets_gap, 3) over(order by ind4.weeknum, ind4.daynum asc)
+
+		else 0 end
 
 		--backlog 2 days ago + no backlog 1 day ago + backlog could not be handled past day
 		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
-			and
-			lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		when
+		lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) <= 0
+		and
+		lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
 
-			then 		--add the remaining backlog
-			lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
-			+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
+		then 		--add the remaining backlog
+		lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		+ lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
 
-			else 0 end
+		else 0 end
 
 		--backlog 2 days ago + backlog 1 day ago + backlog could not be handled past day
 		+ case
-			when
-			lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		when
+		lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		and lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
 
-			then 		--add the full backlog
-			lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
+		then 		--add the full backlog
+		lag(ind4.capacity_lead_tickets_gap, 2) over(order by ind4.weeknum, ind4.daynum asc)
 
-			else 0 end
+		else 0 end
 
 		--day before backlog
 		+ case
-			when lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
-			then lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
+		when lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc) > 0
+		then lag(ind4.capacity_lead_tickets_gap, 1) over(order by ind4.weeknum, ind4.daynum asc)
 
-			else 0 end
+		else 0 end
 
 		as expected_workload_lead_tickets_cumulative
 
